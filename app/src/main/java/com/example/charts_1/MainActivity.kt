@@ -12,6 +12,7 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
+import java.io.IOException
 
 
 class MainActivity : AppCompatActivity() {
@@ -36,29 +37,18 @@ class MainActivity : AppCompatActivity() {
         // xAxis, yAxis (linechart)
         // num, labels (pie, barchart)
         //REPLACE
-        val fuel_used_per_day_Array = arrayOf<Float>(
-            5F, 3.11F, 6.32F, 1.21F, 0F, 3.44F, 4.37F
-        )
+        val fuel_used_per_day_Array = arrayOf<Float>(5F, 3.11F, 6.32F, 1.21F, 0F, 3.44F, 4.37F)
         //REPLACE
-        val dist_travelled_per_day_Array = arrayOf<Float>(
-            20.1F, 43.71F, 22.2F, 61F, 14.31F, 66.1F, 2F
-        )
+        val dist_travelled_per_day_Array = arrayOf<Float>(20.1F, 43.71F, 22.2F, 61F, 14.31F, 66.1F, 2F)
 
         //val dist_travelled_per_day_Array
         //val dist_date_ordered_Array
         //REPLACE
-        val times_per_month_company_used_Array = arrayOf<Int>(
-            0, 1, 2, 3, 4, 5
-        )
+        val times_per_month_company_used_Array = arrayOf<Int>(0, 1, 2, 3, 4, 5)
         //REPLACE
-        val companies_used_ordered_Array = arrayOf<String>(
-            "Shell", "Mobil", "39 by Esso", "32 by Caltex", "29 by BP", "8 by SPC"
-        )
+        val companies_used_ordered_Array = arrayOf<String>("Shell", "Mobil", "39 by Esso", "32 by Caltex", "29 by BP", "8 by SPC")
         //REPLACE
-        val total_money_spent_per_month_Array = arrayOf<Float>(
-            500F, 239.11F, 432.01F, 777.7F, 444.16F, 333.33F,
-            201.30F, 0F, 0F, 0F, 0F, 0F
-        )
+        val total_money_spent_per_month_Array = arrayOf<Float>(500F, 239.11F, 432.01F, 777.7F, 444.16F, 333.33F, 201.30F, 0F, 0F, 0F, 0F, 0F)
 
         val months = arrayOf<String>(
             "Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -67,12 +57,14 @@ class MainActivity : AppCompatActivity() {
 
         //draw charts
         drawLineChart(fuel_used_per_day_Array, dist_travelled_per_day_Array, fuelDistChart, "")
+
         //drawLineChart(dist_travelled_per_day_Array, dist_date_ordered_Array, distTravelledChart, "")
         drawPieChart(times_per_month_company_used_Array, companies_used_ordered_Array, companiesChart)
+
         drawBarChart(total_money_spent_per_month_Array, expenditureChart)
 
-    }
 
+    }
 
     private fun drawLineChart(dataListX: Array<Float>, dataListY: Array<Float>, chart: LineChart, description: String) {
 
@@ -80,8 +72,14 @@ class MainActivity : AppCompatActivity() {
         val data: ArrayList<Entry> = ArrayList()
 
         var i = 0
-        while (i < dataListX.size){
+        var length: Int = dataListX.size
+//        while (i < length-1){
+//            data.add(Entry(dataListX[i],dataListY[i]))
+//            i++
+//        }
+        while (i < 7){
             data.add(Entry(dataListX[i],dataListY[i]))
+            println(data[i])
             i++
         }
 
@@ -99,7 +97,7 @@ class MainActivity : AppCompatActivity() {
         chart.axisLeft.setDrawGridLines(true)
         chart.xAxis.setDrawGridLines(true)
         chart.xAxis.setDrawAxisLine(true)
-        chart.legend.isEnabled = true
+        chart.legend.isEnabled = false
 
         chart.data = tempData
 
@@ -116,7 +114,14 @@ class MainActivity : AppCompatActivity() {
         //data
         val data = ArrayList<PieEntry>()
         var i=0
-        while (i < labels.size){
+        /*while (i < 6){
+            data.add(PieEntry(dataList[i].toFloat(), labels[i]))
+            i++
+        }
+
+         */
+
+        while (i < 4){
             data.add(PieEntry(dataList[i].toFloat(), labels[i]))
             i++
         }
@@ -170,7 +175,14 @@ class MainActivity : AppCompatActivity() {
 
         val data = ArrayList<BarEntry>()
         var i=0
-        while (i<12){
+        /*while (i<12){
+            data.add(BarEntry(i.toFloat(), dataList[i]))
+            i++
+        }
+
+         */
+
+        while (i<10){
             data.add(BarEntry(i.toFloat(), dataList[i]))
             i++
         }
