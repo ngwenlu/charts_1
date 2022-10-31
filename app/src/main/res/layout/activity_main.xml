@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="650dp"
-android:paddingTop="50dp"
-android:paddingBottom="0dp"
-android:layout_marginTop="2dp"
-android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_marginTop="0dp"
+    android:backgroundTintMode="add"
+    android:background="@drawable/marcel_strauss_icr53ovmqcs_unsplash"
+    android:orientation="vertical"
+    android:paddingTop="50dp"
+    android:paddingBottom="50dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Your Analysis"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:shadowColor="@color/midnightblue"
+        android:shadowDx="2.0"
+        android:shadowDy="3.0"
+        android:shadowRadius="8.0" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,33 +41,38 @@ android:orientation="vertical">
             android:layout_height="match_parent"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="2"
-            app:cardCornerRadius="0dp"
+            app:cardBackgroundColor="@color/chosenblue"
+            app:cardCornerRadius="5dp"
             app:cardElevation="3dp"
             app:cardMaxElevation="4dp"
             app:cardPreventCornerOverlap="true"
-            app:cardUseCompatPadding="true"
-            app:cardBackgroundColor= "@color/navyblue">
+            app:cardUseCompatPadding="true">
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:fontFamily="@font/average"
-                android:text="Fuel Used vs Distance Travelled over Time"
+                android:layout_marginTop="7dp"
+                android:fontFamily="sans-serif"
+                android:text="Fuel Companies Used"
                 android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                tools:ignore="TextContrastCheck" />
+                android:textColor="@color/midnightblue"
+                android:textSize="15sp"
+                android:textStyle="normal" />
 
-            <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/linechart_fueluse"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="10dp" />
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/piechart_companies"
+                android:layout_width="343dp"
+                android:layout_height="209dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="15dp"
+
+                />
         </androidx.cardview.widget.CardView>
 
 
@@ -56,72 +81,47 @@ android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
+        android:layout_weight="2"
         android:backgroundTint="@color/white"
-        android:layout_weight="2">
+        android:orientation="horizontal">
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="2"
-            app:cardCornerRadius="0dp"
+            app:cardBackgroundColor="@color/chosenblue"
+            app:cardCornerRadius="5dp"
             app:cardElevation="3dp"
             app:cardMaxElevation="4dp"
             app:cardPreventCornerOverlap="true"
-            app:cardUseCompatPadding="true"
-            app:cardBackgroundColor= "@color/navyblue">
+            app:cardUseCompatPadding="true">
+
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:fontFamily="@font/average"
-                android:text="@string/fuel_companies_used"
+                android:layout_marginTop="7dp"
+                android:fontFamily="sans-serif"
+                android:text="Fuel Expenditure"
                 android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
-
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/piechart_companies"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="7dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginRight="7dp"
-
-                />
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp"
-            android:layout_weight="2"
-            app:cardCornerRadius="0dp"
-            app:cardElevation="3dp"
-            app:cardMaxElevation="4dp"
-            app:cardPreventCornerOverlap="true"
-            app:cardUseCompatPadding="true"
-            app:cardBackgroundColor= "@color/navyblue">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:fontFamily="@font/average"
-                android:text="@string/expenditure"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
+                android:textColor="@color/midnightblue"
+                android:textSize="15sp"
+                android:textStyle="normal" />
 
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/barchart_expenditure"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="7dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginRight="7dp" />
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginBottom="15dp" />
         </androidx.cardview.widget.CardView>
+
+
     </LinearLayout>
 </LinearLayout>

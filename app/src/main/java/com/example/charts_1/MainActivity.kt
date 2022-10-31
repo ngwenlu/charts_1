@@ -1,5 +1,6 @@
 package com.example.charts_1
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.github.mikephil.charting.animation.Easing
@@ -18,7 +19,7 @@ import java.io.IOException
 class MainActivity : AppCompatActivity() {
 
     //fuel used per day against dist travelled per day
-    lateinit var fuelDistChart: LineChart
+    //lateinit var fuelDistChart: LineChart
     //lateinit var distTravelledChart: LineChart
     lateinit var companiesChart: PieChart //number of times fuel company is used
     lateinit var expenditureChart: BarChart
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //set chart view
-        fuelDistChart = findViewById(R.id.linechart_fueluse)
+        //fuelDistChart = findViewById(R.id.linechart_fueluse)
         //distTravelledChart = findViewById(R.id.linechart_disttravelled)
         companiesChart = findViewById(R.id.piechart_companies)
         expenditureChart = findViewById(R.id.barchart_expenditure)
@@ -44,11 +45,11 @@ class MainActivity : AppCompatActivity() {
         //val dist_travelled_per_day_Array
         //val dist_date_ordered_Array
         //REPLACE
-        val times_per_month_company_used_Array = arrayOf<Int>(0, 1, 2, 3, 4, 5)
+        val times_per_month_company_used_Array = arrayOf<Int>(4, 4, 7, 3, 4, 5)
         //REPLACE
         val companies_used_ordered_Array = arrayOf<String>("Shell", "Mobil", "39 by Esso", "32 by Caltex", "29 by BP", "8 by SPC")
         //REPLACE
-        val total_money_spent_per_month_Array = arrayOf<Float>(500F, 239.11F, 432.01F, 777.7F, 444.16F, 333.33F, 201.30F, 0F, 0F, 0F, 0F, 0F)
+        val total_money_spent_per_month_Array = arrayOf<Float>(500F, 239.11F, 432.01F, 777.7F, 444.16F, 333.33F, 201.30F, 100.1F, 321.0F, 212.2F, 111.1F, 99.9F)
 
         val months = arrayOf<String>(
             "Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         //draw charts
-        drawLineChart(fuel_used_per_day_Array, dist_travelled_per_day_Array, fuelDistChart, "")
+        //drawLineChart(fuel_used_per_day_Array, dist_travelled_per_day_Array, fuelDistChart, "")
 
         //drawLineChart(dist_travelled_per_day_Array, dist_date_ordered_Array, distTravelledChart, "")
         drawPieChart(times_per_month_company_used_Array, companies_used_ordered_Array, companiesChart)
@@ -73,15 +74,16 @@ class MainActivity : AppCompatActivity() {
 
         var i = 0
         var length: Int = dataListX.size
-//        while (i < length-1){
-//            data.add(Entry(dataListX[i],dataListY[i]))
-//            i++
-//        }
-        while (i < 7){
+        while (i < length){
             data.add(Entry(dataListX[i],dataListY[i]))
             println(data[i])
             i++
-        }
+       }
+//        while (i < 7){
+//            data.add(Entry(dataListX[i],dataListY[i]))
+//
+//            i++
+//        }
 
         val lineDataSet = LineDataSet(data, "")
         val tempData = LineData(lineDataSet)
@@ -99,7 +101,7 @@ class MainActivity : AppCompatActivity() {
         chart.xAxis.setDrawAxisLine(true)
         chart.legend.isEnabled = false
 
-        chart.data = tempData
+        //chart.data = tempData
 
         //animation
         chart.animateX(1000)
@@ -121,7 +123,7 @@ class MainActivity : AppCompatActivity() {
 
          */
 
-        while (i < 4){
+        while (i < 6){
             data.add(PieEntry(dataList[i].toFloat(), labels[i]))
             i++
         }
@@ -130,14 +132,27 @@ class MainActivity : AppCompatActivity() {
         val tempData = PieData(pieDataSet)
 
         //formatting
-        pieDataSet.sliceSpace = 0.3f
+        val pieShades: ArrayList<Int> = ArrayList()
+        pieShades.add(Color.parseColor("#F7EDA3"))
+        pieShades.add(Color.parseColor("#FF7D63"))
+        pieShades.add(Color.parseColor("#F8B679"))
+        pieShades.add(Color.parseColor("#FFACB8"))
+        pieShades.add(Color.parseColor("#6786C6"))
+        pieShades.add(Color.parseColor("#B5E19A"))
+
+        pieDataSet.colors= pieShades
+        pieDataSet.sliceSpace = 0.5f
         chart.isDrawHoleEnabled = false
         chart.description.isEnabled = false
-        chart.setDrawEntryLabels(false)
 
         chart.legend.isEnabled = true
-        chart.legend.orientation = Legend.LegendOrientation.HORIZONTAL
-        chart.legend.horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
+        chart.legend.textColor = Color.parseColor("#191970")
+        chart.legend.orientation = Legend.LegendOrientation.VERTICAL
+        chart.legend.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
+        chart.legend.verticalAlignment = Legend.LegendVerticalAlignment.CENTER
+        chart.legend.isWordWrapEnabled = true
+        chart.setDrawEntryLabels(false)
+
 
         chart.data = tempData
 
@@ -182,21 +197,38 @@ class MainActivity : AppCompatActivity() {
 
          */
 
-        while (i<10){
+        while (i<12){
             data.add(BarEntry(i.toFloat(), dataList[i]))
             i++
         }
 
         chart.xAxis.valueFormatter = IndexAxisValueFormatter(xAxisValues)
-        chart.xAxis.position = XAxis.XAxisPosition.BOTTOM
+        chart.xAxis.position = XAxis.XAxisPosition.TOP
+        chart.xAxis.textColor = Color.parseColor("#191970")
+        chart.xAxis.textSize = 9F
+
 
         chart.setDrawGridBackground(false)
         chart.axisLeft.isEnabled = false
         chart.axisRight.isEnabled = false
         chart.description.isEnabled = false
+        chart.legend.isEnabled = false
+
+
+        //chart.setDrawValueAboveBar(true)//
+
+        val barShades: ArrayList<Int> = ArrayList()
+        barShades.add(Color.parseColor("#F7EDA3"))
+        barShades.add(Color.parseColor("#FF7D63"))
+        barShades.add(Color.parseColor("#F8B679"))
+        barShades.add(Color.parseColor("#FFACB8"))
+        barShades.add(Color.parseColor("#6786C6"))
+        barShades.add(Color.parseColor("#B5E19A"))
 
         val set = BarDataSet(data, "")
-        set.valueTextSize = 12f
+        set.setColors(barShades)
+        set.valueTextSize = 7f
+        set.valueTextColor = Color.parseColor("#191970")
 
         chart.data = BarData(set)
         chart.invalidate()

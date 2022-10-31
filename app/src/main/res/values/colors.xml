@@ -7,5 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="navyblue">#FF66B2FF</color>
+    <color name="chosenblue">#edfcff</color>
+    <color name="midnightblue">#191970</color>
+    <color name="nonflashwhite">#F0F1F2</color>
+    <color name="bedazzledblue">#315594</color>
+
+
+
 </resources>
